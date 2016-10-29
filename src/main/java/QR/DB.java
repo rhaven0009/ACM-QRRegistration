@@ -46,15 +46,14 @@ public class DB {
         try {
            conn = connect();
            String query = "select name from members where uid="+uid;
-           Statement st = conn.createStatement();
+           PreparedStatement ps = conn.prepareStatement();
            ResultSet res = st.executeQuery(query);
            while(res.next()){
         	   name = res.getString("name");
            }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-        }
+        } 
         return name;
     }
 }
